@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+// var sass = require('node-sass');
+var sassMiddleware = require('node-sass-middleware');
 
 var settings = require('./settings/settings');
 
@@ -14,6 +16,18 @@ var aidaijia_coupon = require('./routes/aidaijia_coupon');
 
 var app = express();
 
+console.log(__dirname)
+app.use(
+  sassMiddleware({
+    src: __dirname + '/public/sass',
+    dest: __dirname + '/public/stylesheets',
+    debug: true,
+    // outputStyle: 'compressed',
+    prefix: '/public/stylesheets'
+  })
+);
+
+// app.use(express.static(path.join(__dirname, 'public')));
 
 // view engine setup
 app.set('env', settings.ENV);
