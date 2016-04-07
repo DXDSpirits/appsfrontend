@@ -1,10 +1,12 @@
 @charset "utf-8";
+@import "bourbon/bourbon";
+
 //「wedfairy_app」全局变量
 $rsvpHeaderColor:#8d88ff;
 $mapHeaderColor:#d667cd;
 $pollHeaderColor:#fcab52;
 
-$appBodyBackgroundColor:#f0f0f0;
+$appBodyBackgroundColor:#fff;
 $appFontColor:#7b7b7d;
 $appSubmitColor:#ff3366;
 $highlightColor:#ff607d;
@@ -15,6 +17,16 @@ $mapBaiduMapButtonBorderColor:#2567da;
 
 $pollSelectTopFontColor:#5b6779;
 $pollSelectBottomBackgroundColor:#fcab52;
+
+// 新UI全局变量
+$navbar-header-height: 20px + (12px * 2);
+$navbar-footer-height: 25px + (12px * 2);
+$wrapper-bg: #f4f4f4;
+$navbar-bg: #ffffff;
+$navbar-text-color: #363636;
+$color-cyan: #24dbbd;
+
+
 //「wedfairy_app」全局样式
 //隐藏滚动条
 ::-webkit-scrollbar{
@@ -39,7 +51,7 @@ input[type="radio"],input[type="checkbox"]{
   font-size:22px;
 }
 .appBody{
-  width:100%;height:auto;padding:0;
+  width:100%;height:auto;padding:44px 15px 30px;
   text-align:center;font-size:14px;line-height:20px;
   background-color:$appBodyBackgroundColor;
   color:$appFontColor;
@@ -74,3 +86,71 @@ input[type="radio"],input[type="checkbox"]{
 }
 .goback{float:left;}
 .goto-dashboard{float:right;font-weight: bold;}
+
+.header-navbar, .footer-navbar {
+    z-index: 1;
+    background-color: $navbar-bg;
+    position: fixed;
+    // top: 0;
+    left: 0;
+    right: 0;
+    height: $navbar-header-height;
+    @include user-select(none);
+    @include clearfix();
+    text-align: center;
+    color: $navbar-text-color;
+    .btn-link {
+        position: relative;
+        height: $navbar-header-height;
+        line-height: $navbar-header-height - 12px - 2px;
+        > .iconfont, > .ift, > .fa {
+            line-height: $navbar-header-height - 12px - 2px;
+            font-size: 18px;
+        }
+        padding-top: 6px;
+        padding-bottom: 6px;
+        border-width: 1px;
+        color: $navbar-text-color;
+        &:hover, &:focus, &:active {
+            color: lighten($navbar-text-color, 50%);
+        }
+    }
+    .navbar-body {
+        @include position(absolute, 0 15% 0 15%);
+        .dropdown-menu, .dropdown-menu::after {
+            left: 50%;
+            @include transform(translate3d(-50%, 0, 0));
+        }
+        .navbar-title {
+            position: relative;
+            font-size: 16px;
+            line-height: $navbar-header-height;
+        }
+    }
+    .dropdown-menu > li {
+        border-left-width: 5px;
+        border-left-style: solid;
+        &:nth-child(4n+1) { border-left-color: #8c88ff; }
+        &:nth-child(4n+2) { border-left-color: #fcab53; }
+        &:nth-child(4n+3) { border-left-color: #d667cd; }
+        &:nth-child(4n+4) { border-left-color: #44c3aa; }
+    }
+}
+
+.header-navbar {
+    z-index: 1;
+    top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    .navbar-body .navbar-title input {
+        display: none;
+        visibility: hidden;
+    }
+    .btn-save {
+      color: $color-cyan;
+      font-size: 16px;
+    }
+}
+.footer-navbar {
+  bottom: 0;
+}

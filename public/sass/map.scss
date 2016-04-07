@@ -2,10 +2,12 @@
 @import "global";
 //「地图」全局样式
 //不需要写 body 的 background-color
+
+
 .map-header{
   @extend .appHeader;
-  background-color:$mapHeaderColor;
-  background-image:url(../images/map_header.jpg);
+  // background-color:$mapHeaderColor;
+  // background-image:url(../images/map_header.jpg);
   background-size:77.07%;
   a {
     @extend .appHeaderLink;
@@ -23,13 +25,21 @@
 //「地图」设置页面
 #map-location{
   @extend .appInput;
-  width:94.93%;height:72.00px;
-  margin-top:55.20px;padding:5.07%;
+  width:94.93%;
+  padding:20px 15px 10px;
+  border-radius: 0;
+  border-bottom: 1px solid #e5e5e5;
+  color: $navbar-text-color;
 }
 #map-address{
   @extend .appInput;
-  width:94.93%;height:72.00px;
-  margin-top:28.32px;padding:5.07%;
+  // width:94.93%;height:72.00px;
+  // margin-top:28.32px;padding:5.07%;
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  // border: 1px solid red;
+  border-radius: 0;
 }
 .map-use{
   width:100%;height:55.68px;margin-top:52.32px;
@@ -42,14 +52,12 @@
 .map-img{
   width:100%;height:auto;
 }
-.map-marker{
-  width:40px;height:40px;margin-top:-40px;margin-left:-20px;
-  position:absolute;top:0;left:50%;z-index:1;display:none;
-}
+
 #map-message{
   @extend .appInput;
-  width:94.93%;height:260.08px;
-  margin-top:51.84px;padding:5.07%;
+  width: 100%;
+  height: auto;
+  padding: 15px 0;
 }
 //「地图」展示页面
 .map-show-body{
@@ -101,18 +109,84 @@
   }
 }
 #baidu-map-mark{
-  width:100%;margin:0;overflow:hidden;
-}
-.map-mark-marker{
-  width:40px;height:40px;margin-top:-40px;margin-left:-20px;
-  position:absolute;top:50%;left:50%;z-index:1;
+  width:100%;
+  margin:0;
+  margin-top: 44px;
+  overflow:hidden;
 }
 .map-mark-footer{
   width:100%;height:44px;border:1px solid #a3a3a3;
   font-size:15px;text-align:center;color:#555;
 }
-.map-mark-submit{
-  @extend .appInput;
-  margin-top:8.5px;
-  background-color:#fff;
+.map-wrapper {
+  margin-top: 10px;
+  position: relative;
+  .btn-tips-map {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border-radius: 14px;
+    font-size: 12px;
+    color: #fff;
+    padding: 4px 10px;
+    background-color: rgba(#111111, 0.4);
+    span {
+      // font-size: 14px;
+    }
+  }
+  .icon-map-marker {
+    padding: 0px;
+    font-size: 16px;
+  }
+  .map-marker{
+    width:40px;
+    height:40px;
+    margin-top:-40px;
+    margin-left:-20px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    // z-index:1;
+  }
+}
+
+//map mark
+.map-mark-marker {
+  width: 40px;
+  height: 40px;
+  margin-top: -40px;
+  margin-left: -20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+}
+textarea {
+  resize: none;
+}
+#map-mark-wrapper {
+  height: 100%;
+  .map-body {
+    // height: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .footer-navbar {
+    padding: 0 15px;
+    bottom: 15px;
+  }
+  .map-mark-sure{
+    color: #fff;
+    display: block;
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    line-height: 25px;
+    color: #fff;
+    background-color: $color-cyan;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 18px;
+  }
+
 }

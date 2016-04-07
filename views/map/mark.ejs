@@ -3,50 +3,38 @@
 <head>
     <% include ../includes/metadata %>
     <title>地图</title>
+    <link rel="stylesheet" href="<%= tat_static %>stylesheets/amour.css">
     <link rel="stylesheet" href="<%= static_url %>stylesheets/map.css">
     <% include ../includes/production %>
     <script src="<%= tat_static %>javascripts/vendor/modernizr-2.7.1.min.js"></script>
 </head>
-<body>
-    <div class="map-mark-header">
-        <a href="javascript:history.go(-1);"><i class="iconfont icon-angle-left"></i></a>确定地点
+<body id="map-mark-wrapper">
+    <header class="container header-navbar">
+        <div class="navbar-body">
+            <span class="navbar-title">确定地点</span>
+        </div>
+        <div class="btn btn-link btn-back pull-left" data-route="return">
+            <i class="iconfont icon-arrow-left"></i>
+            <link class="rippleJS" />
+        </div>
+        <div class="btn btn-link btn-save pull-right hidden">
+            <span>保存</span>
+        </div>
+    </header>
+    <div class="container map-body">
+        <div id="baidu-map-mark"></div>
+        <img class="map-mark-marker" src="<%= static_url %>images/map_marker.png"/>
+        <textarea name="map-address" id="map-address" placeholder="具体的地址，XX省XX市XX区XX路XX号(不要输入酒店名称)"></textarea>
     </div>
-    <div id="baidu-map-mark"></div>
-    <img class="map-mark-marker" src="<%= static_url %>images/map_marker.png"/>
-    <div class="map-mark-footer">
-        <button class="map-mark-submit" type="button" onclick="javascript:map_mark_submit();">
-            <i class="iconfont icon-check"></i> 确定
-        </button>
-    </div>
+    <footer class="footer-navbar footer-btn">
+        <div class="map-mark-sure has-ripple">确定</div>
+    </footer>
 </body>
-<script src="<%= tat_static %>javascripts/vendor/jquery-2.1.1.min.js"></script>
+<% include ../includes/javascripts %>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=qNG8rBhokW7RzZnaRN9ubujq"></script>
-<script>
-    function map_mark_submit(){
-        //保存坐标到 localStorage
-        localStorage.setItem("map_lng",map.getCenter().lng);
-        localStorage.setItem("map_lat",map.getCenter().lat);
-        //返回到地图设置页面
-        history.back();
-    }
-    //根据屏幕高度计算地图高度
-    $("#baidu-map-mark").css("height",$(window).height() - 44 * 2 + "px");
-    //从 localStorage 中获取地址
-    var address = localStorage.getItem("map_address");
-    //创建地图实例
-    var map = new BMap.Map("baidu-map-mark");
-    var point = new BMap.Point(116.331398, 39.897445);
-    map.centerAndZoom(point, 12);
-    //将地址解析结果显示在地图上,并调整地图视野
-    var myGeo = new BMap.Geocoder();
-    myGeo.getPoint(String(address), function (point) {
-        if (point) {
-            map.centerAndZoom(point, 16);
-        } else {
-            alert("没有找到您填写的地址哦，请返回并重新填写！");
-        }
-    }, "北京市");
-</script>
+
+<script src="<%= cdn_url %>/javascripts/map-mark.js"></script>
+
 <% include ../includes/analytics %>
 </html>
 
