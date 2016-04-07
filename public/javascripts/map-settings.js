@@ -1,5 +1,6 @@
 (function() {
     var APIRoot = 'http://apps.wedfairy.com/api/';
+
     var MapSettingsView =  Backbone.View.extend({
         events: {
             'click .map-wrapper .btn-tips-map': 'useBaiduMap',

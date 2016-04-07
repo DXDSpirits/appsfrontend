@@ -1,0 +1,30 @@
+#map-show-wrapper {
+    .map-img-wrapper {
+        position: relative;
+    }
+    .map-show-route {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        border-radius: 14px;
+        font-size: 12px;
+        color: #fff;
+        padding: 4px 10px;
+        background-color: rgba(#111111, 0.4);
+    }
+    .icon-map-marker {
+        padding: 0px;
+        font-size: 16px;
+    }
+    .map-show-location {
+        margin-top: 20px;
+        padding-bottom: 15px;
+        font-size: 16px;
+        color: $navbar-text-color;
+        border-bottom: 1px solid #e5e5e5;
+    }
+    .map-show-message {
+        text-align: justify;
+        padding: 10px;
+    }
+}

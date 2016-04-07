@@ -160,6 +160,7 @@ input[type="radio"], input[type="checkbox"] {
   background-size: 77.07%; }
 
 #map-location {
+  font-size: 16px;
   width: 100%;
   padding: 20px 15px 10px;
   border-radius: 0;
@@ -187,6 +188,10 @@ input[type="radio"], input[type="checkbox"] {
   width: 100%;
   height: auto; }
 
+textarea {
+  resize: none;
+  color: #363636; }
+
 #map-message {
   width: 100%;
   height: auto;
@@ -195,49 +200,6 @@ input[type="radio"], input[type="checkbox"] {
 .map-show-body {
   background-color: #fff;
   color: #353535; }
-
-.map-show-location {
-  width: 66.67%;
-  height: auto;
-  margin: 98.40px auto 0; }
-
-.map-show-flower {
-  width: 21.73%;
-  height: auto;
-  margin-top: 16.80px; }
-
-.map-show-address {
-  width: 66.67%;
-  height: auto;
-  margin: 31.68px auto 0; }
-
-.map-show-route {
-  width: 44.00%;
-  height: 43.68px;
-  margin-top: 57.60px;
-  background-color: #3e82f7;
-  color: #fff;
-  border: 1px solid #2567da;
-  border-radius: 21.84px;
-  outline: none; }
-
-#baidu-map {
-  width: 95.73%;
-  margin: 23.52px auto 0;
-  overflow: hidden; }
-
-.map-show-how-come {
-  width: 26.67%;
-  height: auto;
-  margin-top: 54.72px; }
-
-.map-show-message {
-  width: 78.13%;
-  height: auto;
-  margin: 16.32px auto 158.40px;
-  padding-top: 31.20px;
-  border-top: 1px solid #c4c4c4;
-  text-align: left; }
 
 .map-mark-header {
   width: 100%;
@@ -305,10 +267,6 @@ input[type="radio"], input[type="checkbox"] {
   left: 50%;
   z-index: 1; }
 
-textarea {
-  resize: none;
-  color: #363636; }
-
 #map-mark-wrapper {
   height: 100%; }
   #map-mark-wrapper .map-body {
@@ -329,3 +287,31 @@ textarea {
     padding-top: 8px;
     padding-bottom: 8px;
     border-radius: 18px; }
+
+#map-show-wrapper .map-img-wrapper {
+  position: relative; }
+
+#map-show-wrapper .map-show-route {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border-radius: 14px;
+  font-size: 12px;
+  color: #fff;
+  padding: 4px 10px;
+  background-color: rgba(17, 17, 17, 0.4); }
+
+#map-show-wrapper .icon-map-marker {
+  padding: 0px;
+  font-size: 16px; }
+
+#map-show-wrapper .map-show-location {
+  margin-top: 20px;
+  padding-bottom: 15px;
+  font-size: 16px;
+  color: #363636;
+  border-bottom: 1px solid #e5e5e5; }
+
+#map-show-wrapper .map-show-message {
+  text-align: justify;
+  padding: 10px; }

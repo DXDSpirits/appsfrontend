@@ -24,6 +24,7 @@
 }
 //「地图」设置页面
 #map-location{
+  font-size: 16px;
   @extend .appInput;
   width:100%;
   padding:20px 15px 10px;
@@ -52,7 +53,10 @@
 .map-img{
   width:100%;height:auto;
 }
-
+textarea {
+  resize: none;
+  color: $navbar-text-color;
+}
 #map-message{
   @extend .appInput;
   width: 100%;
@@ -64,38 +68,6 @@
   @extend .appBody;
   background-color:#fff;
   color:$mapShowFontColor;
-}
-.map-show-location{
-  width:66.67%;height:auto;
-  margin:98.40px auto 0;
-}
-.map-show-flower{
-  width:21.73%;height:auto;
-  margin-top:16.80px;
-}
-.map-show-address{
-  width:66.67%;height:auto;
-  margin:31.68px auto 0;
-}
-.map-show-route{
-  width:44.00%;height:43.68px;
-  margin-top:57.60px;
-  background-color:$mapBaiduMapButtonColor;color:#fff;
-  border:1px solid $mapBaiduMapButtonBorderColor;border-radius:21.84px;
-  outline:none;
-}
-#baidu-map{
-  width:95.73%;margin:23.52px auto 0;overflow:hidden;
-}
-.map-show-how-come{
-  width:26.67%;height:auto;
-  margin-top:54.72px;
-}
-.map-show-message{
-  width:78.13%;height:auto;
-  margin:16.32px auto 158.40px;padding-top:31.20px;
-  border-top:1px solid #c4c4c4;
-  text-align:left;
 }
 //「地图」地点标注页面
 .map-mark-header{
@@ -161,33 +133,7 @@
   left: 50%;
   z-index: 1;
 }
-textarea {
-  resize: none;
-  color: $navbar-text-color;
-}
-#map-mark-wrapper {
-  height: 100%;
-  .map-body {
-    // height: 100%;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-  .footer-navbar {
-    padding: 0 15px;
-    bottom: 15px;
-  }
-  .map-mark-sure{
-    color: #fff;
-    display: block;
-    width: 100%;
-    height: 40px;
-    font-size: 16px;
-    line-height: 25px;
-    color: #fff;
-    background-color: $color-cyan;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    border-radius: 18px;
-  }
 
-}
+
+@import "map-mark";
+@import "map-show";
