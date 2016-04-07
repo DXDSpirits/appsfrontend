@@ -160,7 +160,7 @@ input[type="radio"], input[type="checkbox"] {
   background-size: 77.07%; }
 
 #map-location {
-  width: 94.93%;
+  width: 100%;
   padding: 20px 15px 10px;
   border-radius: 0;
   border-bottom: 1px solid #e5e5e5;
@@ -260,7 +260,7 @@ input[type="radio"], input[type="checkbox"] {
 #baidu-map-mark {
   width: 100%;
   margin: 0;
-  margin-top: 44px;
+  margin-top: 54px;
   overflow: hidden; }
 
 .map-mark-footer {
@@ -306,7 +306,8 @@ input[type="radio"], input[type="checkbox"] {
   z-index: 1; }
 
 textarea {
-  resize: none; }
+  resize: none;
+  color: #363636; }
 
 #map-mark-wrapper {
   height: 100%; }

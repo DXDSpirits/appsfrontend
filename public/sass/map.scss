@@ -25,7 +25,7 @@
 //「地图」设置页面
 #map-location{
   @extend .appInput;
-  width:94.93%;
+  width:100%;
   padding:20px 15px 10px;
   border-radius: 0;
   border-bottom: 1px solid #e5e5e5;
@@ -111,7 +111,7 @@
 #baidu-map-mark{
   width:100%;
   margin:0;
-  margin-top: 44px;
+  margin-top: 54px;
   overflow:hidden;
 }
 .map-mark-footer{
@@ -163,6 +163,7 @@
 }
 textarea {
   resize: none;
+  color: $navbar-text-color;
 }
 #map-mark-wrapper {
   height: 100%;
