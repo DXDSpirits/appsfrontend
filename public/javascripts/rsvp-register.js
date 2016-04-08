@@ -101,8 +101,10 @@
                     self.$(".rsvp-rsvp-message").html(return2br(data.get('message')));
                     if(Date.parse(data.get('deadline')) < Date.parse(moment().format('YYYY-MM-DD'))){
                         //隐藏 form，显示提示信息
-                        $("form").slideUp("slow");
-                        self.$(".rsvp-rsvp-notice").show();
+                        // $("form").slideUp("slow");
+                        self.$('.form-register').addClass('hidden');
+                        self.$('.footer-navbar').addClass('hidden');
+                        self.$(".rsvp-rsvp-notice").removeClass('hidden').show();
                     }
                 }
             })
