@@ -15,8 +15,10 @@ textarea {
 }
 input {
   border: none;
+  outline: none;
   color: $navbar-text-color;
 }
 
 @import 'rsvp-settings';
 @import 'rsvp-dashboard';
+@import 'rsvp-register';

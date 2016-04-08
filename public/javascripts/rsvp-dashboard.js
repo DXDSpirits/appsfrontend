@@ -57,7 +57,7 @@
             }))();
             model.fetch({
                 success: function (data) {
-                    self.$(".dashboard-total-deadline").children(".highlight").text(data.get('deadline'));
+                    self.$(".dashboard-total-deadline").children(".text-default-color").text(data.get('deadline'));
                 }
             })
         },
@@ -74,7 +74,7 @@
         },
         insertPeopleNum: function(collection) {
             var sum = _.reduce(collection.pluck('people'), function(memo, num){ return memo + num; }, 0);
-            this.$('.dashboard-total-num .highlight').html(sum);
+            this.$('.dashboard-total-num .text-default-color').html(sum);
         }
 
     })

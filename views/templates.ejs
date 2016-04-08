@@ -1,7 +1,11 @@
 <script id="template-rsvp-guest-item" type="text/x-handlebars-template">
     <div class='dashboard-guests-details wow fadeInUp'>
         <div class='avatar-wrapper'>
+            {{#if avatar}}
             <div class='img avatar' data-bg-src='{{avatar}}'></div>
+            {{else}}
+            <div class='img avatar' data-bg-src='/images/default-avatar.png'></div>
+            {{/if}}
         </div>
         <div class='name-mobile-time-wrapper'>
             <span class="name">{{name}}</span>

@@ -3,6 +3,9 @@
         font-size: 16px;
         color: $color-cyan;
     }
+    .text-default-color {
+        color: $navbar-text-color;
+    }
     .rsvp-bg {
         margin-top: 54px;
         width: 100%;
@@ -29,7 +32,6 @@
         }
     }
     .rsvp-item {
-        // border: 1px solid red;
         margin-bottom: 25px;
     }
     .dashboard-guests-details {
