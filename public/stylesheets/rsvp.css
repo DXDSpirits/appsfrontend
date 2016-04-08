@@ -239,7 +239,7 @@ input {
 #rsvp-dashboard-wrapper .dashboard-rsvp-header {
   margin: 30px 0 20px; }
   #rsvp-dashboard-wrapper .dashboard-rsvp-header .guests-icon {
-    font-size: 16px;
+    font-size: 20px;
     color: #24dbbd; }
   #rsvp-dashboard-wrapper .dashboard-rsvp-header label {
     font-size: 14px;
@@ -270,6 +270,10 @@ input {
   width: 35px;
   padding-top: 35px;
   background-size: contain; }
+
+#rsvp-dashboard-wrapper .avatar.default-avatar {
+  background-color: #eeeeee;
+  background-image: url("/public/images/default-avatar.png"); }
 
 #rsvp-dashboard-wrapper .name, #rsvp-dashboard-wrapper .mobile {
   color: #363636;
