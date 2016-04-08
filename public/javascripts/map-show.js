@@ -3,6 +3,7 @@
 
     var MapShowView = Backbone.View.extend({
         events: {
+            'click [data-route]': 'routeTo',
             'click .map-show-route': 'map_show_route'
         },
         el: $('#map-show-wrapper'),
@@ -53,6 +54,12 @@
                     },{enableHighAccuracy:true})
                 }
             });
+        },
+        routeTo: function(e) {
+            var route = $(e.currentTarget).data('route');
+            if (route == 'return') {
+                window.history.back();
+            }
         },
         //「点击查看路线」按钮点击事件
         map_show_route: function(){

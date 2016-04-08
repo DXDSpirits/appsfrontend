@@ -7,61 +7,35 @@
     <% include ../includes/production %>
     <script src="<%= tat_static %>javascripts/vendor/modernizr-2.7.1.min.js"></script>
 </head>
-<body>
-    <div class="container rsvp-header">
-        <a class="goback" href="javascript:history.go(-1);" ><i class="iconfont icon-arrow-left"></i></a>
-        <a class="goto-dashboard" href="javascript:goto_dashboard();">查看宾客</a>
-    </div>
+<body id="rsvp-settings-wrapper">
+    <header class="container header-navbar">
+        <div class="navbar-body">
+            <span class="navbar-title">宾客管理</span>
+        </div>
+        <div class="btn btn-link btn-back pull-left" data-route="return">
+            <i class="iconfont icon-arrow-left"></i>
+            <link class="rippleJS" />
+        </div>
+        <div class="btn btn-link btn-show-dashboard pull-right">
+            <span>查看宾客</span>
+            <link class="rippleJS" />
+        </div>
+    </header>
     <div class="container rsvp-body">
-        <form action="javascript:rsvp_settings_submit();">
-            <textarea name="rsvp-message" id="rsvp-message" placeholder="请输入你想要对宾客说的话..."></textarea>
-            <div class="rsvp-deadline">
-                <label>设定截止日期 :</label>
-                <input name="rsvp-deadline" id="rsvp-deadline" type="date"/>
-            </div>
-            <button class="rsvp-submit" type="submit">提交</button>
-        </form>
+    <div class="img rsvp-bg"></div>
+        <div class="rsvp-deadline">
+            <label>设定截止日期:</label>
+            <input name="rsvp-deadline" id="rsvp-deadline" type="date"/>
+        </div>
+        <textarea name="rsvp-message" id="rsvp-message" placeholder="请输入你想要对宾客说的话..." rows="8"></textarea>
     </div>
+    <footer class="footer-navbar footer-btn">
+        <div class="rsvp-submit has-ripple">提交</div>
+    </footer>
 </body>
-<script src="<%= tat_static %>javascripts/vendor/jquery-2.1.1.min.js"></script>
-<script src="<%= tat_static %>javascripts/plugins/moment.js"></script>
-<script>
-    function goto_dashboard(){
-        var url = "<%= composer_host %>rsvp/<%= rsvp_id %>/dashboard/?token=<%= token %>";
-        window.location.href = encodeURI(url);
-    }
-    //「提交」按钮点击事件
-    function rsvp_settings_submit(){
-        var message = $("#rsvp-message").val();
-        var deadline = $("#rsvp-deadline").val();
-        $.ajax({
-            url: "<%= api_root %>rsvps/rsvp/<%= rsvp_id %>/?token=<%= token %>",
-            type: "PUT",
-            data: {
-                "message":message,
-                "deadline":deadline
-            },
-            success: function (data) {
-                history.back();
-            }
-        });
-    }
-    //从 api 中读取数据
-    $.ajax({
-        url: "<%= api_root %>rsvps/rsvp/<%= rsvp_id %>/",
-        type: "GET",
-        success: function (data) {
-            if(data.message == null && data.deadline == null){
-                //没有数据，这是新建应用，设置默认值
-                $("#rsvp-message").val("在这花好月圆、良辰美景之夜，真诚邀请您来参加我们的婚礼。婚礼将于 2015 年 10 月 1 日在王府大酒店举办，恭候各位的佳音！");
-                $("#rsvp-deadline").val(moment().add(1, 'months').format('YYYY-MM-DD'));
-            }else{
-                $("#rsvp-message").val(data.message);
-                $("#rsvp-deadline").val(data.deadline);
-            }
-        }
-    });
-</script>
+
+<% include ../includes/javascripts %>
+<script src="<%= cdn_url %>/javascripts/rsvp-settings.js"></script>
 <% include ../includes/analytics %>
 </html>
 

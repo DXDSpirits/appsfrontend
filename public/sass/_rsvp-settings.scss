@@ -1,0 +1,23 @@
+#rsvp-settings-wrapper {
+    .btn-show-dashboard {
+        font-size: 16px;
+        color: $color-cyan;
+    }
+    .rsvp-bg {
+        margin-top: 54px;
+        width: 100%;
+        padding-top: 56.26%;
+        background-image: bg-image-url("rsvp-bg.jpg");
+        background-size: contain;
+    }
+    .rsvp-deadline {
+        @include app-titles;
+    }
+    .footer-navbar {
+        padding: 0 15px;
+        bottom: 15px;
+    }
+    .rsvp-submit {
+        @include btn-block-footer;
+    }
+}

@@ -1,0 +1,80 @@
+#rsvp-dashboard-wrapper {
+    .btn-show-dashboard {
+        font-size: 16px;
+        color: $color-cyan;
+    }
+    .rsvp-bg {
+        margin-top: 54px;
+        width: 100%;
+        padding-top: 56.26%;
+        background-image: bg-image-url("rsvp-bg.jpg");
+        background-size: contain;
+    }
+    .dashboard-total-deadline, .dashboard-total-num {
+        @include app-titles;
+    }
+    .footer-navbar {
+        padding: 0 15px;
+        bottom: 15px;
+    }
+    .dashboard-rsvp-header {
+        margin: 30px 0 20px;
+        .guests-icon {
+            font-size: 16px;
+            color: $color-cyan;
+        }
+        label {
+            font-size: 14px;
+            color: rgba(#000, 0.5);
+        }
+    }
+    .rsvp-item {
+        // border: 1px solid red;
+        margin-bottom: 25px;
+    }
+    .dashboard-guests-details {
+        @include clearfix;
+    }
+    .avatar-wrapper, .name-mobile-time-wrapper, .people-wrapper {
+        display: inline-block;
+        float: left;
+    }
+    .avatar-wrapper {
+        // width: auto;
+        width: 20%;
+    }
+    .name-mobile-time-wrapper {
+        width: 55%;
+    }
+    .people-wrapper {
+        width: 25%;
+    }
+    .avatar {
+        width: 35px;
+        padding-top: 35px;
+        background-size: contain;
+    }
+    .name, .mobile {
+        color: $navbar-text-color;
+        font-size: 14px;
+    }
+    .name {
+        margin-right: 10px;
+    }
+    .created-time {
+        font-size: 12px;
+        color: rgba(#000000, 0.5);
+    }
+    .people-wrapper {
+        border-left: 1px solid #f0f0f0;
+    }
+    .people-text {
+        font-size: 13px;
+        color: rgba(#000000, 0.55);
+    }
+    .people-num {
+        font-size: 15px;
+        color: $color-cyan;
+    }
+
+}

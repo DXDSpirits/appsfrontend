@@ -33,10 +33,6 @@
             var route = $(e.currentTarget).data('route');
             if (route == 'return') {
                 window.history.back();
-            } else if (route == 'preview') {
-                App.previewStory(App.story.get('name'));
-            } else {
-                App.router.navigate(route);
             }
         },
         useBaiduMap: function(){
