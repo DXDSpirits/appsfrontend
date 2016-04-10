@@ -12,7 +12,6 @@
             var self = this;
             var h = $(window).height();
             var w = $(window).width()
-            // this.$("#baidu-map-mark").css("height", h - 44 * 2 - 67 + "px");
             // 计算map-marker的位置
             this.$("#baidu-map-mark").css("height", w - 30 + 'px');
             this.$('.map-mark-marker').css('top', w / 2 + 44 + 'px');
@@ -30,8 +29,6 @@
 
             if(!this.address || this.address == 'undefined') {
                 this.locaitonInBMap(this.address);
-                // this.$('#map-address').focus();
-                // self.map.centerAndZoom('北京市', 11);
             }else {
                 this.$('#map-address').val(this.address);
                 this.locaitonInBMap(this.address);
