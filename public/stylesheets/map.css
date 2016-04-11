@@ -5,10 +5,6 @@ input[type="date"], select {
   -webkit-appearance: none;
   background-color: transparent !important; }
 
-input[type="radio"], input[type="checkbox"] {
-  -webkit-appearance: none;
-  display: none !important; }
-
 .appHeader, .map-header {
   width: 100%;
   height: 190px;
@@ -154,7 +150,8 @@ input[type="radio"], input[type="checkbox"] {
     font-size: 16px; }
 
 .footer-navbar {
-  bottom: 0; }
+  bottom: 0;
+  background-color: #fff; }
 
 .map-header {
   background-size: 77.07%; }

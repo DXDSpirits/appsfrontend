@@ -21,7 +21,7 @@
 
 <script id="template-poll-option-item" type="text/x-handlebars-template">
     <span class='input-group-addon poll-tips-text index'></span>
-    <input class="form-control" name="poll-name" type="text" value="{{content}}"/>
+    <input class="form-control" name="poll-name" type="text" value="{{content}}" data-pos="{{pos}}"/>
 </script>
 
 <script id="template-dashboard-poll-item" type="text/x-handlebars-template">
@@ -37,17 +37,23 @@
 </script>
 
 <script id="template-vote-radio-item" type="text/x-handlebars-template">
-    <li class="radio">
-        <input type="radio" class="vote-item" name="poll-name" value="{{pos}}" />
-        <span>{{content}}</span>
-        <span class="check"></span>
-    </li>
+    <div class="radio-wrapping">
+        <div class="radio">
+            <input type="radio" class="vote-item" id="radio-input-{{pos}}" name="radio-input" value="{{id}}" />
+            <label for="radio-input-{{pos}}"></label>
+        </div>
+    </div>
+    <span class="content">{{content}}</span>
+    <span class="check"></span>
 </script>
 
 <script id="template-vote-checkbox-item" type="text/x-handlebars-template">
-    <label>
-        <input type="radio" class="vote-item" name="poll-name" value="{{pos}}" />
-        <label>{{content}}</label>
-        <span class="check"></span>
-    </label>
+    <div class="checkbox-wrapping">
+        <div class="checkbox">
+            <input type="checkbox" class="vote-item" id="checkbox-input-{{pos}}" name="checkbox-input" value="{{id}}" />
+            <label for="checkbox-input-{{pos}}"></label>
+        </div>
+    </div>
+    <span class="content">{{content}}</span>
+    <span class="check"></span>
 </script>
