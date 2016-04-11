@@ -23,3 +23,31 @@
     <span class='input-group-addon poll-tips-text index'></span>
     <input class="form-control" name="poll-name" type="text" value="{{content}}"/>
 </script>
+
+<script id="template-dashboard-poll-item" type="text/x-handlebars-template">
+    <span class='vote-people-num'>{{count}}人</span>
+    <span clas='poll-tips-text'>喜欢{{content}}</span>
+    <div class="progress-wrapper clearfix">
+        <div class="progress pull-left">
+            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{percent}}%;">
+            </div>
+        </div>
+        <span class="precent-text pull-right">{{percent}}%</span>
+    </div>
+</script>
+
+<script id="template-vote-radio-item" type="text/x-handlebars-template">
+    <li class="radio">
+        <input type="radio" class="vote-item" name="poll-name" value="{{pos}}" />
+        <span>{{content}}</span>
+        <span class="check"></span>
+    </li>
+</script>
+
+<script id="template-vote-checkbox-item" type="text/x-handlebars-template">
+    <label>
+        <input type="radio" class="vote-item" name="poll-name" value="{{pos}}" />
+        <label>{{content}}</label>
+        <span class="check"></span>
+    </label>
+</script>

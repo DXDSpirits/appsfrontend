@@ -18,7 +18,7 @@
         }
     });
 
-    var RsvpDashboardView = Amour.View.extend({
+    var PollSettingsView = Amour.View.extend({
         events: {
             'click .btn-goto-dashboard': 'gotoDashboard',
             'click [data-route]': 'routeTo',
@@ -56,7 +56,6 @@
             pollInfoModel.fetch({
                 url: APIRoot + "polls/poll/" + this.pollID,
                 success: function(model) {
-                    console.log(model);
                     self.$('#poll-title').val(model.get('title'));
                     self.$("#poll-message").val(return2br(model.get('message')));
                     self.$("#poll-deadline").val(model.get('deadline'));
@@ -69,7 +68,6 @@
                     self.$('#poll-message').val(collection.get('message'));
                     if(collection.models.length) {
                         // 如果有投票设置
-                        console.log(collection);
                         self.$('input, textarea').attr('readonly', 'true');
                         self.$('.poll-option-add').addClass('hidden');
                         self.$('select').attr('disabled', 'disabled');
@@ -112,7 +110,6 @@
                     history.back();
                 },
                 error: function(e) {
-                    console.log(e);
                 }
             });
             this.savePollOptions();
@@ -137,6 +134,6 @@
         },
 
     })
-    var rsvpDashboardView = new RsvpDashboardView();
+    var pollSettingsView = new PollSettingsView();
 
 })(jQuery);

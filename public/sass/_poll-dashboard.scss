@@ -1,0 +1,77 @@
+#poll-dashboard-wrapper {
+    .container.poll-body {
+        padding-bottom: 35px;
+    }
+    .btn-show-dashboard {
+        font-size: 16px;
+        color: $color-cyan;
+    }
+    .poll-bg {
+        margin-top: 44px;
+        width: 100%;
+        padding-top: 56.26%;
+        background-image: bg-image-url("poll-bg.jpg");
+        background-size: contain;
+    }
+    #poll-title {
+        @include app-titles;
+    }
+    .poll-message {
+        margin: 35px 0 15px;
+    }
+    .poll-option-list {
+        margin-bottom: 10px;
+    }
+    .vote-people-num {
+        color: #8c8c8c;
+        color: $color-cyan;
+        font-size: 20px;
+    }
+    .poll-dashboard-total {
+        margin-bottom: 20px;
+    }
+    .dashboard-total-num {
+        color: #bebebe;
+        font-size: 12px;
+    }
+    .progress {
+        height: 10px;
+        border-radius: 5px;
+        display: inline-block;
+        width: 80%;
+        margin: 3px 0 20px;
+        .progress-bar {
+            min-width: 1%;
+            background-color: $color-cyan;
+        }
+    }
+    .precent-text {
+        text-align: right;
+        display: inline-block;
+        width: 20%;
+        font-size: 12px;
+        color: $color-cyan;
+    }
+    .poll-option-add {
+        margin: 20px 0 20px;
+    }
+    .btn-add-poll-option {
+        padding: 7px;
+        font-size: 15px;
+        color: #b2b2b2;
+        border: 3px solid #e8e8e8;
+        border-radius: 50%;
+    }
+    select, select:focus {
+        outline: none;
+        border: none;
+        box-shadow: none;
+    }
+    .footer-navbar {
+        padding: 0 15px;
+        bottom: 15px;
+    }
+    .btn-save {
+        @include btn-block-footer;
+    }
+}
