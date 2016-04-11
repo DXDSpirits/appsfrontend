@@ -5,8 +5,9 @@
 
     var RsvpRegisterView = Amour.View.extend({
         events: {
-            'click .rsvp-submit': 'rsvpSubmit',
-            'click [data-route]': 'routeTo'
+            'click .btn-save[enable=true]': 'rsvpSubmit',
+            'click [data-route]': 'routeTo',
+            'input input': 'inputListener'
         },
         el: $('#rsvp-register-wrapper'),
         initialize: function() {
@@ -18,6 +19,13 @@
             var route = $(e.currentTarget).data('route');
             if (route == 'return') {
                 window.history.back();
+            }
+        },
+        inputListener: function() {
+            if(this.$('#rsvp-name').val() && this.$('#rsvp-people').val() && this.$('#rsvp-mobile').val()) {
+                this.$('.btn-save').attr('enable', 'true');
+            }else {
+                this.$('.btn-save').attr('enable', 'false');
             }
         },
         //「提交」按钮点击事件

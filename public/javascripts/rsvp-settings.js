@@ -4,7 +4,7 @@
 
     var RsvpDashboardView = Backbone.View.extend({
         events: {
-            'click .btn-save[enable=false]': 'rsvpSettingsSubmit',
+            'click .btn-save[enable=true]': 'rsvpSettingsSubmit',
             'click .header-navbar .btn-show-dashboard': 'showDashboard',
             'click [data-route]': 'routeTo',
             'input input': 'inputListener'

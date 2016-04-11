@@ -22,13 +22,12 @@
             //将地址解析结果显示在地图上,并调整地图视野
             this.myGeo = new BMap.Geocoder();
 
-
-
             //从 localStorage 中获取地址
             this.address = localStorage.getItem("map_address");
 
-            if(!this.address || this.address == 'undefined') {
+            if(!this.address || this.address == 'undefined' || this.address == 'null') {
                 this.locaitonInBMap(this.address);
+                this.$('#map-address').val('');
             }else {
                 this.$('#map-address').val(this.address);
                 this.locaitonInBMap(this.address);
