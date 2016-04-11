@@ -43,11 +43,6 @@
     input#rsvp-people {
         color: $color-cyan;
     }
-
-    .footer-navbar {
-        padding: 0 15px;
-        bottom: 15px;
-    }
     .rsvp-submit {
         @include btn-block-footer;
     }

@@ -78,10 +78,10 @@ input[type="date"],select{
   -webkit-appearance:none;
   background-color:transparent !important;
 }
-input[type="radio"],input[type="checkbox"]{
-  -webkit-appearance:none;
-  display: none !important;
-}
+// input[type="radio"],input[type="checkbox"]{
+//   -webkit-appearance:none;
+//   display: none !important;
+// }
 .appHeader{
   width:100%;height:190px;padding-top:23px;
   background-repeat:no-repeat;background-position:center bottom;
@@ -194,5 +194,8 @@ input[type="radio"],input[type="checkbox"]{
     }
 }
 .footer-navbar {
+  height: auto;
   bottom: 0;
+  padding: 10px 15px;
+  background-color: #fff;
 }

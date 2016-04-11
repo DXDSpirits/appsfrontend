@@ -13,10 +13,6 @@
     .rsvp-deadline {
         @include app-titles;
     }
-    .footer-navbar {
-        padding: 0 15px;
-        bottom: 15px;
-    }
     .rsvp-submit {
         @include btn-block-footer;
     }
