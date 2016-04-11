@@ -64,120 +64,13 @@
         pollNumFetch: function() {
             //从 api 中读取数据
             var self = this;
-            this.polls.fetch({
-                success: function(collection) {
-                    // self.calcTotalNum(collection);
-                }
-            })
+            this.polls.fetch({})
         },
         calcTotalNum: function(collection) {
             var sum = _.reduce(collection.pluck('count'), function(memo, num){ return memo + num; }, 0);
             // this.$('.dashboard-total-num .text-default-color').html(sum);
             // voteTotalNum = sum;
         }
-
     })
     var pollDashboard = new PollDashboardView();
-
-    // // 主流程
-    // $.ajax({
-    //     url: "<%= api_root %>polls/poll/<%= poll_id %>/",
-    //     type: "GET",
-    //     success: function (data) {
-    //         //写入「截止日期」「投票人数」「标题」「开场白」
-    //         $(".poll-total-left").children(".highlight").text(data.deadline);
-    //         $(".poll-total-right").children(".highlight").text(data.count + " 人");
-    //         $(".poll-title").html(return2br(data.title));
-    //         $(".poll-message").append(return2br(data.message));
-    //         //保存投票属性到 sessionStorage
-    //         sessionStorage.setItem("poll_select",data.select);
-    //         poll_result_list();
-    //     }
-    // });
-    // function poll_result_list(){
-    //     $.ajax({
-    //         url: "<%= api_root %>polls/poll/<%= poll_id %>/poll_options/",
-    //         type: "GET",
-    //         success: function (data){
-    //             sessionStorage.setItem("votes_max",0);
-    //             for(i = 0;i < data.length;i ++){
-    //                 //保存选项内容到 sessionStorage
-    //                 sessionStorage.setItem("option_"+ data[i].id +"_content",data[i].content);
-    //                 //渲染选项列表
-    //                 if(+sessionStorage.getItem("poll_select")){
-    //                     //文字投票
-    //                     $(".poll-result-list").append(
-    //                             "<div class='poll-result-option'>" +
-    //                             "<div class='result-option-left'>" + data[i].count +
-    //                             "<div class='result-option-color color-"+ (i+1) +"'></div>" +
-    //                             "</div>" +
-    //                             "<div class='result-option-right'>"+ data[i].content +"</div>" +
-    //                             "<div class='clear'></div>" +
-    //                             "</div>");
-    //                     if (data[i].count > Number(sessionStorage.getItem("votes_max"))){
-    //                         sessionStorage.setItem("votes_max",data[i].count);
-    //                     }
-    //                 }else{
-    //                     //图片投票
-    //                     $(".poll-result-list").append(
-    //                             "<div class='poll-result-option'>" +
-    //                             "<div class='result-option-left'>" + data[i].count +
-    //                             "<div class='result-option-color color-"+ (i+1) +"'></div>" +
-    //                             "</div>" +
-    //                             "<img class='result-option-right' src='"+ data[i].content +"'/>" +
-    //                             "<div class='clear'></div>" +
-    //                             "</div>");
-    //                     if (data[i].count > Number(sessionStorage.getItem("votes_max"))){
-    //                         sessionStorage.setItem("votes_max",data[i].count);
-    //                     }
-    //                 }
-    //             }
-    //             poll_result_chart();
-    //             voter_list();
-    //         }
-    //     });
-    // }
-
-    // function poll_result_chart(){
-    //     //渲染选项图表
-    //     $.ajax({
-    //         url: "<%= api_root %>polls/poll/<%= poll_id %>/poll_options/",
-    //         type: "GET",
-    //         success: function (data){
-    //             if(Number(sessionStorage.getItem("votes_max")) == 0){
-    //                 $(".poll-result-chart").hide();
-    //             }else{
-    //                 for(i = 0;i < data.length;i ++){
-    //                     var percent = data[i].count / Number(sessionStorage.getItem("votes_max")) * 100;
-    //                     $(".poll-result-chart").append(
-    //                             "<div class='chart-bar color-"+ (i+1) +" wow fadeInRight' style='width:"+ percent +"%;'></div>"
-    //                     );
-    //                 }
-    //             }
-    //         }
-    //     });
-    // }
-    // function voter_list(){
-    //     //渲染「投票详情」列表
-    //     $.ajax({
-    //         url: "<%= api_root %>polls/poll/<%= poll_id %>/votes/?token=<%= token %>",
-    //         type: "GET",
-    //         success: function (data) {
-    //             for(i = 0;i < data.length;i ++){
-    //                 $(".voter-list").prepend(
-    //                         "<div class='voter-details wow fadeInUp'>" +
-    //                         "<img src='"+ data[i].avatar +"'/>" +
-    //                         "<div>" +
-    //                         "<label><span>"+ data[i].name +"</span>选择了<span>"+ getContentByOptionId(data[i].option) +"</span></label>" +
-    //                         "<label class='details-date'>"+ data[i].created_date +"</label>" +
-    //                         "</div>" +
-    //                         "</div>");
-    //             }
-    //         }
-    //     });
-    // }
-    // function getContentByOptionId(num){
-    //     //根据 optionId 从 sessionStorage 获取 content
-    //     return sessionStorage.getItem("option_"+ num +"_content");
-    // }
 })(jQuery);
