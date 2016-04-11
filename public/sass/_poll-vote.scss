@@ -1,0 +1,134 @@
+#poll-vote-wrapper {
+    .container.poll-body {
+        padding-bottom: 65px;
+    }
+    .btn-show-dashboard {
+        font-size: 16px;
+        color: $color-cyan;
+    }
+    .poll-bg {
+        margin-top: 44px;
+        width: 100%;
+        padding-top: 56.26%;
+        background-image: bg-image-url("poll-bg.jpg");
+        background-size: contain;
+    }
+    .poll-title {
+        @include app-titles;
+    }
+    .poll-message {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .poll-deadline {
+        color: #bebebe;
+    }
+    .vote-people-num {
+        color: $color-cyan;
+        font-size: 20px;
+    }
+    .dashboard-total-num {
+        color: #bebebe;
+        font-size: 12px;
+    }
+    .dashboard-poll-item {
+        @include clearfix;
+        margin: 20px 0;
+    }
+    .poll-option-list {
+        margin-bottom: 10px;
+    }
+    .radio, .checkbox {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        border: 1px solid $color-cyan;
+        background: #fff;
+        margin: 0 auto;
+    }
+    .radio {
+        border-radius: 50%;
+    }
+    .radio-wrapping, .checkbox-wrapping {
+        width: 15%;
+        float: left;
+    }
+    input[type="radio"], input[type="checkbox"] {
+        @include appearance(none);
+        display: none !important;
+    }
+    .radio input[type="radio"], .radio-inline input[type="radio"],
+    .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+        position: absolute;
+        margin-left: -20px;
+    }
+    span.content {
+        width: 85%;
+        margin: 0;
+        float: left;
+    }
+
+    .radio label, .checkbox label {
+        display: block;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 14px;
+        padding-left: 14px;
+        height: 14px;
+        min-height: 14px;
+        background: #fff;
+        cursor: pointer;
+        @include transition(all 0.25s ease);
+        z-index: 1;
+    }
+    .radio label {
+        border-radius: 50px;
+    }
+    .radio input[type=radio]:checked + label,
+    .checkbox input[type=checkbox]:checked + label, {
+        background: $color-cyan;
+    }
+
+    input[readonly="readonly"], textarea[readonly="readonly"] {
+        background-color: transparent;
+    }
+    .input-group {
+        border-bottom: 1px solid #cccccc;
+        & > * {
+            border-width: 0;
+            border-radius: 0;
+            outline: none;
+        }
+        input.form-control {
+            color: $navbar-text-color;
+            font-size: 14px;
+            box-shadow: none;
+        }
+        input.form-control:focus {
+            border: none;
+            box-shadow: none;
+        }
+        .input-group-addon {
+            color: #9f9f9f;
+            font-size: 13px;
+            background-color: transparent;
+            padding-left: 10px;
+        }
+    }
+    .poll-option-add {
+        margin: 20px 0 20px;
+    }
+    .btn-add-poll-option {
+        padding: 7px;
+        font-size: 15px;
+        color: #b2b2b2;
+        border: 3px solid #e8e8e8;
+        border-radius: 50%;
+    }
+    select, select:focus {
+        outline: none;
+        border: none;
+        box-shadow: none;
+    }
+}

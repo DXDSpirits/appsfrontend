@@ -23,7 +23,8 @@
             'click .btn-goto-dashboard': 'gotoDashboard',
             'click [data-route]': 'routeTo',
             'click .btn-add-poll-option': 'addBlankOptiop',
-            'click .btn-save': 'savePollData'
+            'click .btn-save': 'savePollData',
+            'input input': 'inputListener'
         },
         el: $('#poll-settings-wrapper'),
         initialize: function() {
@@ -50,6 +51,13 @@
             var url = "/poll/" + this.pollID + "/dashboard/?token=" + this.token;
             window.location.href = encodeURI(url);
         },
+        inputListener: function() {
+            if(this.$('#poll-title').val() && this.$('input[data-pos=0]').val() && this.$('input[data-pos=1]').val()) {
+                this.$('.btn-save').attr('enable', 'true');
+            }else {
+                this.$('.btn-save').attr('enable', 'false');
+            }
+        },
         pollDataFetch: function() {
             var self = this;
             var pollInfoModel = new Backbone.Model();
@@ -68,11 +76,13 @@
                     self.$('#poll-message').val(collection.get('message'));
                     if(collection.models.length) {
                         // 如果有投票设置
-                        self.$('input, textarea').attr('readonly', 'true');
+                        self.$('.btn-save').attr('enable', 'true');
+                        self.$('input[name=poll-name]').attr('readonly', 'true');
                         self.$('.poll-option-add').addClass('hidden');
                         self.$('select').attr('disabled', 'disabled');
                     }else {
                         // 如果新建投票第一次设置， 新建2个空白选项
+                        localStorage.setItem('set_data', 0);
                         self.$("#poll-deadline").val(moment().add(1, 'months').format('YYYY-MM-DD'));
                         self.addBlankOptiop();
                         self.addBlankOptiop();
@@ -112,7 +122,9 @@
                 error: function(e) {
                 }
             });
-            this.savePollOptions();
+            if(localStorage.getItem('set_data') == 0) {
+                this.savePollOptions();
+            }
         },
         savePollOptions: function(){
             var self = this;
@@ -127,10 +139,14 @@
                 model.save({}, {
                     url: APIRoot + "polls/option/",
                     success: function () {
+                        num--;
                         history.back();
                     }
-                })
-            })
+                });
+            });
+            if(!num) {
+                localStorage.removeItem('set_data');
+            }
         },
 
     })

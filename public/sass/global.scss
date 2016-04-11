@@ -130,7 +130,7 @@ input[type="date"],select{
 .goto-dashboard{float:right;font-weight: bold;}
 
 .header-navbar, .footer-navbar {
-    z-index: 1;
+    z-index: 999;
     background-color: $navbar-bg;
     position: fixed;
     // top: 0;
@@ -198,4 +198,17 @@ input[type="date"],select{
   bottom: 0;
   padding: 10px 15px;
   background-color: #fff;
+}
+
+.btn-save[enable="false"],
+.btn-submit[enable="false"] {
+    @include btn-block-footer;
+    background-color: #bebebe;
+    color: #f0f0f0;
+    // display: none;
+}
+.btn-save[enable="true"],
+.btn-submit[enable="true"] {
+    // display: block;
+    @include btn-block-footer;
 }

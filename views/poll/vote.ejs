@@ -7,326 +7,44 @@
     <% include ../includes/production %>
     <script src="<%= tat_static %>javascripts/vendor/modernizr-2.7.1.min.js"></script>
 </head>
-<body>
-    <div class="container poll-header">
-        <a href="javascript:history.go(-1);"><i class="iconfont icon-arrow-left"></i></a>
-    </div>
+<body id="poll-vote-wrapper">
+    <header class="container header-navbar">
+        <div class="navbar-body">
+            <span class="navbar-title">参与投票</span>
+        </div>
+        <div class="btn btn-link btn-back pull-left" data-route="return">
+            <i class="ift ift-arrow-left"></i>
+            <link class="rippleJS" />
+        </div>
+    </header>
     <div class="container poll-body">
-        <div class="poll-total">
-            <div class="poll-total-left">
-                <label>投票截止日期</label>
-                <label class="highlight"></label>
-            </div>
-            <div class="poll-total-right">
-                <label>参与投票人数</label>
-                <label class="highlight"></label>
+        <div class="img poll-bg"></div>
+        <div class="poll-title text-center"></div>
+        <div class="poll-message text-center"></div>
+        <div class="poll-dashboard-total">
+            <div class="dashboard-total-num text-center hidden">
+                <span>参与投票总数: </span>
+                <span class="text-default-color"></span>
             </div>
         </div>
-        <div class="poll-title"></div>
-        <div class="poll-message">
-            <i class="iconfont icon-quote-left quote-left"></i>
-            <i class="iconfont icon-quote-right quote-right"></i>
+
+        <div class="poll-items-wrapper"></div>
+
+        <div class="poll-result-wrapper hidden"></div>
+        <div class="poll-deadline">
+            <span>投票截止日期: </span>
+            <span class="poll-deadline-text"></span>
         </div>
-        <form action="javascript:poll_vote_submit();">
-            <button class="poll-submit" type="submit">提交</button>
-        </form>
     </div>
+    <footer class="footer-navbar footer-btn">
+        <div class="btn-save has-ripple" enable="false">提交</div>
+    </footer>
+
+    <% include ../templates %>
+    <% include ../includes/javascripts %>
+    <script src="<%= cdn_url %>/javascripts/poll-vote.js"></script>
 </body>
-<script src="<%= tat_static %>javascripts/vendor/jquery-2.1.1.min.js"></script>
-<script src="<%= tat_static %>javascripts/plugins/moment.js"></script>
-<script src="<%= static_url %>javascripts/global_tool.js"></script>
-<script>
-    // 主流程
-    window.poll_vote_disable = 0;//默认可以投票
-    $.ajax({
-        url: "<%= api_root %>polls/poll/<%= poll_id %>/",
-        type: "GET",
-        success: function (data) {
-            //写入「截止日期」「投票人数」「标题」「开场白」
-            $(".poll-total-left").children(".highlight").text(data.deadline);
-            $(".poll-total-right").children(".highlight").text(data.count + " 人");
-            $(".poll-title").html(return2br(data.title));
-            $(".poll-message").append(return2br(data.message));
-            sessionStorage.setItem("poll_select",data.select);
-            sessionStorage.setItem("poll_type",data.type);
-            // 判断是否过了投票截止日期
-            if(Date.parse(data.deadline) < Date.parse(moment().format('YYYY-MM-DD'))){
-                window.poll_vote_disable = 1;
-            }
-            // 验证用户是否投过票了
-            user_vote_verification();
-        }
-    });
 
-    function user_vote_verification(){
-        // 获取用户 id 头像和昵称
-        $.ajax({
-            url: "<%= vu_api_root %>",
-            type: "GET",
-            headers: {Authorization: "Token <%= token %>"},
-            success: function(data) {
-                sessionStorage.setItem("poll_user",data[0].id);
-                if(data[0].profile.avatar == null || data[0].profile.avatar == ""){
-                    sessionStorage.setItem("poll_avatar","http://up.img.8yinhe.cn/o_19vdmapepac610dm1kgdedj1tlj7.png?imageView2/2/w/1280/q/85");
-                }else{
-                    sessionStorage.setItem("poll_avatar",data[0].profile.avatar);
-                }
-                if(data[0].profile.name == null || data[0].profile.name == ""){
-                    sessionStorage.setItem("poll_name","某神秘用户");
-                }else{
-                    sessionStorage.setItem("poll_name",data[0].profile.name);
-                }
-                //本地验证投票用户唯一性
-                if(localStorage.getItem("poll_<%= poll_id %>_voted") == data[0].id){
-                    window.poll_vote_disable = 1;
-                    print_poll_result();
-                }else{
-                    //api 验证投票用户唯一性
-                    $.ajax({
-                        url: "<%= api_root %>polls/poll/<%= poll_id %>/voted/" + sessionStorage.getItem("poll_user") + "/",
-                        type: "GET",
-                        success: function (data) {
-                            if(data.length != 0){
-                                window.poll_vote_disable = 1;
-                            }
-                            // 在这里确定到底是渲染选项卡还是投票结果
-                            if(window.poll_vote_disable == 1){
-                                print_poll_result();
-                            }else{
-                                print_option_list();
-                            }
-                        },
-                        error: function () {
-                            alert("呜呼 ಥ_ಥ ，投票的人太多啦，小盒子建议你请稍后再试。");
-                        }
-                    });
-                }
-            },
-            error: function () {
-                alert("呜呼 ಥ_ಥ ，投票的人太多啦，小盒子建议你请稍后再试。");
-            }
-        });
-    }
-
-    function print_poll_result(){
-        // 隐藏 form，显示投票结果
-        $("form").slideUp("slow");
-        $(".poll-body").append("<div class='poll-result-list'></div><div class='poll-result-chart'></div>");
-        $.ajax({
-            url: "<%= api_root %>polls/poll/<%= poll_id %>/poll_options/",
-            type: "GET",
-            success: function (data){
-                sessionStorage.setItem("votes_max",0);
-                for(i = 0;i < data.length;i ++){
-                    //渲染选项列表
-                    if(+sessionStorage.getItem("poll_select")){
-                        //文字投票
-                        $(".poll-result-list").append(
-                                "<div class='poll-result-option'>" +
-                                "<div class='result-option-left'>" + data[i].count +
-                                "<div class='result-option-color color-"+ (i+1) +"'></div>" +
-                                "</div>" +
-                                "<div class='result-option-right'>"+ data[i].content +"</div>" +
-                                "<div class='clear'></div>" +
-                                "</div>");
-                        if (data[i].count > Number(sessionStorage.getItem("votes_max"))){
-                            sessionStorage.setItem("votes_max",data[i].count);
-                        }
-                    }else{
-                        //图片投票
-                        $(".poll-result-list").append(
-                                "<div class='poll-result-option'>" +
-                                "<div class='result-option-left'>" + data[i].count +
-                                "<div class='result-option-color color-"+ (i+1) +"'></div>" +
-                                "</div>" +
-                                "<img class='result-option-right' src='"+ data[i].content +"'/>" +
-                                "<div class='clear'></div>" +
-                                "</div>");
-                        if (data[i].count > Number(sessionStorage.getItem("votes_max"))){
-                            sessionStorage.setItem("votes_max",data[i].count);
-                        }
-                    }
-                }
-                //渲染选项图表
-                $.ajax({
-                    url: "<%= api_root %>polls/poll/<%= poll_id %>/poll_options/",
-                    type: "GET",
-                    success: function (data){
-                        if(Number(sessionStorage.getItem("votes_max")) == 0){
-                            $(".poll-result-chart").hide();
-                        }else{
-                            for(i = 0;i < data.length;i ++){
-                                var percent = data[i].count / Number(sessionStorage.getItem("votes_max")) * 100;
-                                $(".poll-result-chart").append(
-                                        "<div class='chart-bar color-"+ (i+1) +"' style='width:"+ percent +"%;'></div>"
-                                );
-                            }
-                        }
-                    }
-                });
-            }
-        });
-    }
-
-    function print_option_list(){
-        //渲染选项卡
-        $.ajax({
-            url: "<%= api_root %>polls/poll/<%= poll_id %>/poll_options/",
-            type: "GET",
-            success: function (data) {
-                var jsonLength = data.length;
-                var poll_select = Number(sessionStorage.getItem("poll_select"));
-                var poll_type = Number(sessionStorage.getItem("poll_type"));
-                if(poll_select == 1 && poll_type == 1){
-                    //文字投票，单选按钮
-                    $("form").prepend("<div class='poll-radio'></div>");
-                    for(i = 0;i < jsonLength;i ++){
-                        $(".poll-radio").append(
-                                "<div class='poll-show-option'>" +
-                                "<div class='radio-wrapping wrapping-"+(i+1)+"'>" +
-                                "<div class='radio'>" +
-                                "<input type='radio' id='radio-input-"+(i+1)+"' name='radio-input' value='"+data[i].id+"' />" +
-                                "<label for='radio-input-"+(i+1)+"'></label>" +
-                                "</div>" +
-                                "</div>" +
-                                "<label>"+data[i].content+"</label>" +
-                                "<div class='clear'></div>" +
-                                "</div>");
-                    }
-                }else if(poll_select == 1 && poll_type == 0){
-                    //文字投票，多选按钮
-                    $("form").prepend("<div class='poll-checkbox'></div>");
-                    for(i = 0;i < jsonLength;i ++){
-                        $(".poll-checkbox").append(
-                                "<div class='poll-show-option'>" +
-                                "<div class='checkbox-wrapping wrapping-"+(i+1)+"'>" +
-                                "<div class='checkbox'>" +
-                                "<input type='checkbox' id='checkbox-input-"+(i+1)+"' name='checkbox-input' value='"+data[i].id+"' />" +
-                                "<label for='checkbox-input-"+(i+1)+"'></label>" +
-                                "</div>" +
-                                "</div>" +
-                                "<label>"+data[i].content+"</label>" +
-                                "<div class='clear'></div>" +
-                                "</div>");
-                    }
-                }else if(poll_select == 0 && poll_type == 1){
-                    //图片投票，单选按钮
-                    $("form").prepend("<div class='poll-radio'></div>");
-                    for(i = 0;i < jsonLength;i ++){
-                        $(".poll-radio").append(
-                                "<div class='poll-show-option'>" +
-                                "<div class='radio-wrapping wrapping-"+(i+1)+"'>" +
-                                "<div class='radio'>" +
-                                "<input type='radio' id='radio-input-"+(i+1)+"' name='radio-input' value='"+data[i].id+"' />" +
-                                "<label for='radio-input-"+(i+1)+"'></label>" +
-                                "</div>" +
-                                "</div>" +
-                                "<img src='"+data[i].content+"'/>" +
-                                "<div class='clear'></div>" +
-                                "</div>");
-                    }
-                }else if(poll_select == 0 && poll_type == 0){
-                    //图片投票，多选按钮
-                    $("form").prepend("<div class='poll-checkbox'></div>");
-                    for(i = 0;i < jsonLength;i ++){
-                        $(".poll-checkbox").append(
-                                "<div class='poll-show-option'>" +
-                                "<div class='checkbox-wrapping wrapping-"+(i+1)+"'>" +
-                                "<div class='checkbox'>" +
-                                "<input type='checkbox' id='checkbox-input-"+(i+1)+"' name='checkbox-input' value='"+data[i].id+"' />" +
-                                "<label for='checkbox-input-"+(i+1)+"'></label>" +
-                                "</div>" +
-                                "</div>" +
-                                "<img src='"+data[i].content+"'/>" +
-                                "<div class='clear'></div>" +
-                                "</div>");
-                    }
-                }else{
-                    alert("您来得太早了，故事主人还没想好问题呢！");
-                    $("form").slideUp("slow");
-                }
-                changeWrappingPaddingTop(jsonLength);
-                //选项卡点击事件
-                $(".poll-show-option").click(function (){
-                    $(this).find('input[type=radio]').prop('checked', true);
-                    if($(this).find('input[type=checkbox]').is(':checked')){
-                        $(this).find('input[type=checkbox]').prop('checked',false);
-                    }else{
-                        $(this).find('input[type=checkbox]').prop('checked',true);
-                    }
-                });
-            }
-        });
-    }
-
-    function poll_vote_submit(){
-        if(+sessionStorage.getItem("poll_type")){
-            //post 单选
-            var option = $(":radio[name='radio-input']:checked").val();
-            var user_id = sessionStorage.getItem("poll_user");
-            var avatar = sessionStorage.getItem("poll_avatar");
-            var name = sessionStorage.getItem("poll_name");
-            $.ajax({
-                url: "<%= api_root %>polls/vote/",
-                type: "POST",
-                data: {
-                    "poll": "<%= poll_id %>",
-                    "option": option,
-                    "user_id": user_id,
-                    "avatar": avatar,
-                    "name": name
-                },
-                success: function (data) {
-                    localStorage.setItem("poll_<%= poll_id %>_voted",sessionStorage.getItem("poll_user"));
-                    alert("投票成功，小盒子谢谢您的参与！");
-                    window.location.reload();
-                },
-                error: function () {
-                    alert("呜呼 ಥ_ಥ ，投票的人太多啦，小盒子建议你请稍后再试。");
-                }
-            });
-        }else{
-            //post 多选
-            var n = 0;//计算需要 post 多少次
-            $(":checkbox[name='checkbox-input']").each(function() {
-                if (this.checked) {
-                    n++;
-                }
-            });
-            $(":checkbox[name='checkbox-input']").each(function(){
-                if(this.checked){
-                    var option = $(this).val();
-                    var user_id = sessionStorage.getItem("poll_user");
-                    var avatar = sessionStorage.getItem("poll_avatar");
-                    var name = sessionStorage.getItem("poll_name");
-                    $.ajax({
-                        url: "<%= api_root %>polls/vote/",
-                        type: "POST",
-                        data: {
-                            "poll": "<%= poll_id %>",
-                            "option": option,
-                            "user_id": user_id,
-                            "avatar": avatar,
-                            "name": name
-                        },
-                        success: function() {
-                            n--;
-                            if (n == 0) {
-                                localStorage.setItem("poll_<%= poll_id %>_voted",sessionStorage.getItem("poll_user"));
-                                alert("投票成功，小盒子谢谢您的参与！");
-                                window.location.reload();
-                            }
-                        },
-                        error: function () {
-                            alert("呜呼 ಥ_ಥ ，投票的人太多啦，小盒子建议你请稍后再试。");
-                            return false;
-                        }
-                    });
-                }
-            });
-        }
-    }
-</script>
 <% include ../includes/analytics %>
 </html>
 
