@@ -5,10 +5,6 @@ input[type="date"], select {
   -webkit-appearance: none;
   background-color: transparent !important; }
 
-input[type="radio"], input[type="checkbox"] {
-  -webkit-appearance: none;
-  display: none !important; }
-
 .appHeader {
   width: 100%;
   height: 190px;
@@ -83,7 +79,7 @@ input[type="radio"], input[type="checkbox"] {
   font-weight: bold; }
 
 .header-navbar, .footer-navbar {
-  z-index: 1;
+  z-index: 999;
   background-color: #ffffff;
   position: fixed;
   left: 0;
@@ -154,7 +150,40 @@ input[type="radio"], input[type="checkbox"] {
     font-size: 16px; }
 
 .footer-navbar {
-  bottom: 0; }
+  height: auto;
+  bottom: 0;
+  padding: 10px 15px;
+  background-color: #fff; }
+
+.btn-save[enable="false"],
+.btn-submit[enable="false"] {
+  display: block;
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  line-height: 25px;
+  color: #fff;
+  background-color: #24dbbd;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 18px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  background-color: #bebebe;
+  color: #f0f0f0; }
+
+.btn-save[enable="true"],
+.btn-submit[enable="true"] {
+  display: block;
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  line-height: 25px;
+  color: #fff;
+  background-color: #24dbbd;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 18px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); }
 
 body {
   background-color: #fff; }
@@ -171,6 +200,10 @@ input {
   border: none;
   outline: none;
   color: #363636; }
+
+.rsvp-rsvp-notice {
+  color: #24dbbd;
+  margin-top: 30px; }
 
 #rsvp-settings-wrapper .btn-show-dashboard {
   font-size: 16px;
@@ -191,10 +224,6 @@ input {
   border-bottom: 1px solid #e5e5e5;
   color: #363636;
   line-height: 100%; }
-
-#rsvp-settings-wrapper .footer-navbar {
-  padding: 0 15px;
-  bottom: 15px; }
 
 #rsvp-settings-wrapper .rsvp-submit {
   display: block;
@@ -343,10 +372,6 @@ input {
 
 #rsvp-register-wrapper input#rsvp-people {
   color: #24dbbd; }
-
-#rsvp-register-wrapper .footer-navbar {
-  padding: 0 15px;
-  bottom: 15px; }
 
 #rsvp-register-wrapper .rsvp-submit {
   display: block;

@@ -4,9 +4,10 @@
 
     var RsvpDashboardView = Backbone.View.extend({
         events: {
-            'click .rsvp-submit': 'rsvpSettingsSubmit',
+            'click .btn-save[enable=false]': 'rsvpSettingsSubmit',
             'click .header-navbar .btn-show-dashboard': 'showDashboard',
-            'click [data-route]': 'routeTo'
+            'click [data-route]': 'routeTo',
+            'input input': 'inputListener'
         },
         el: $('#rsvp-settings-wrapper'),
         initialize: function() {
@@ -18,6 +19,13 @@
             var route = $(e.currentTarget).data('route');
             if (route == 'return') {
                 window.history.back();
+            }
+        },
+        inputListener: function() {
+            if(this.$('#rsvp-deadline').val()) {
+                this.$('.btn-save').attr('enable', 'true');
+            }else {
+                this.$('.btn-save').attr('enable', 'false');
             }
         },
         //「提交」按钮点击事件
@@ -57,9 +65,11 @@
                         //没有数据，这是新建应用，设置默认值
                         self.$("#rsvp-message").val("在这花好月圆、良辰美景之夜，真诚邀请您来参加我们的婚礼。婚礼将于 2015 年 10 月 1 日在王府大酒店举办，恭候各位的佳音！");
                         self.$("#rsvp-deadline").val(moment().add(1, 'months').format('YYYY-MM-DD'));
+                        self.$('.btn-save').attr('enable', 'true');
                     }else{
                         self.$("#rsvp-message").val(data.message);
                         self.$("#rsvp-deadline").val(data.deadline);
+                        self.$('.btn-save').attr('enable', 'true');
                     }
                 }
             })

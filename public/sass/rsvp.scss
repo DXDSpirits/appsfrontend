@@ -18,6 +18,10 @@ input {
   outline: none;
   color: $navbar-text-color;
 }
+.rsvp-rsvp-notice {
+  color: $color-cyan;
+  margin-top: 30px;
+}
 
 @import 'rsvp-settings';
 @import 'rsvp-dashboard';
