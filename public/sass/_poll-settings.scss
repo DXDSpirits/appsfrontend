@@ -26,7 +26,6 @@
         background-color: transparent;
     }
     .input-group {
-        border-bottom: 1px solid #cccccc;
         & > * {
             border-width: 0;
             border-radius: 0;
@@ -46,6 +45,11 @@
             font-size: 13px;
             background-color: transparent;
             padding-left: 10px;
+        }
+    }
+    .poll-option-list {
+        .input-group {
+            border-bottom: 1px solid #cccccc;
         }
     }
     .poll-option-add {

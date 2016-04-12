@@ -22,19 +22,17 @@
         </div>
     </header>
     <div class="container map-body">
-        <form>
-            <div class="map-wrapper">
-                <div class="btn-tips-map">
-                    <i class="ift ift-map-marker"></i>
-                    <span>定位地点</span>
-                </div>
-                <img class="map-img"/>
-                <img class="map-marker hidden" src="<%= static_url %>images/map_marker.png"/>
+        <div class="map-wrapper">
+            <div class="btn-tips-map">
+                <i class="ift ift-map-marker"></i>
+                <span>定位地点</span>
             </div>
-            <input class="text-center" name="map-location" id="map-location" placeholder="婚礼地点名称:酒店、会所、公园等">
+            <img class="map-img"/>
+            <img class="map-marker hidden" src="<%= static_url %>images/map_marker.png"/>
+        </div>
+        <input class="text-center" name="map-location" id="map-location" placeholder="婚礼地点名称:酒店、会所、公园等">
 
-            <textarea name="map-message" id="map-message" placeholder="这里可以描写一下过来的路线，交通工具、地铁几号口出来、附近有什么显著建筑物之类的" rows='3'></textarea>
-        </form>
+        <textarea name="map-message" id="map-message" placeholder="这里可以描写一下过来的路线，交通工具、地铁几号口出来、附近有什么显著建筑物之类的" rows='10'></textarea>
     </div>
 </body>
 

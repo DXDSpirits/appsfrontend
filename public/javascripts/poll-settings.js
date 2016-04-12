@@ -52,7 +52,7 @@
             window.location.href = encodeURI(url);
         },
         inputListener: function() {
-            if(this.$('#poll-title').val() && this.$('input[data-pos=0]').val() && this.$('input[data-pos=1]').val()) {
+            if(this.$('#poll-title').val() && this.$('input[data-pos=1]').val() && this.$('input[data-pos=2]').val()) {
                 this.$('.btn-save').attr('enable', 'true');
             }else {
                 this.$('.btn-save').attr('enable', 'false');
@@ -68,8 +68,12 @@
                     self.$("#poll-message").val(return2br(model.get('message')));
                     self.$("#poll-deadline").val(model.get('deadline'));
                     self.$("#poll-type").val(model.get('type'));
+                    self.pollOptionsFetch();
                 }
             })
+        },
+        pollOptionsFetch: function() {
+            var self = this;
             this.pollDataCollection.fetch({
                 success: function(collection) {
                     self.$('#poll-title').val(collection.get('title'));
@@ -86,6 +90,7 @@
                         self.$("#poll-deadline").val(moment().add(1, 'months').format('YYYY-MM-DD'));
                         self.addBlankOptiop();
                         self.addBlankOptiop();
+                        self.$('#poll-type option[value=1]').attr('selected', 'true');
                     }
                 }
             });

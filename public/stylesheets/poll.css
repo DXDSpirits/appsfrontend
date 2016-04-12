@@ -252,24 +252,28 @@ input {
 #poll-settings-wrapper input[readonly="readonly"], #poll-settings-wrapper textarea[readonly="readonly"] {
   background-color: transparent; }
 
-#poll-settings-wrapper .input-group {
+#poll-settings-wrapper .input-group > * {
+  border-width: 0;
+  border-radius: 0;
+  outline: none; }
+
+#poll-settings-wrapper .input-group input.form-control {
+  color: #363636;
+  font-size: 14px;
+  box-shadow: none; }
+
+#poll-settings-wrapper .input-group input.form-control:focus {
+  border: none;
+  box-shadow: none; }
+
+#poll-settings-wrapper .input-group .input-group-addon {
+  color: #9f9f9f;
+  font-size: 13px;
+  background-color: transparent;
+  padding-left: 10px; }
+
+#poll-settings-wrapper .poll-option-list .input-group {
   border-bottom: 1px solid #cccccc; }
-  #poll-settings-wrapper .input-group > * {
-    border-width: 0;
-    border-radius: 0;
-    outline: none; }
-  #poll-settings-wrapper .input-group input.form-control {
-    color: #363636;
-    font-size: 14px;
-    box-shadow: none; }
-  #poll-settings-wrapper .input-group input.form-control:focus {
-    border: none;
-    box-shadow: none; }
-  #poll-settings-wrapper .input-group .input-group-addon {
-    color: #9f9f9f;
-    font-size: 13px;
-    background-color: transparent;
-    padding-left: 10px; }
 
 #poll-settings-wrapper .poll-option-add {
   margin: 20px 0 20px; }

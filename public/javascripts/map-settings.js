@@ -23,7 +23,7 @@
         },
         enableSaveBtn: function() {
             var location = this.$('#map-location').val();
-            if(location) {
+            if(location && localStorage.getItem("map_lng") && localStorage.getItem("map_lat")) {
                 this.$('.btn-save').removeClass('hidden');
             }else {
                 this.$('.btn-save').addClass('hidden');
@@ -38,23 +38,19 @@
         useBaiduMap: function(){
             // 首先保存数据到 localStorage
             localStorage.setItem("map_location", $("#map-location").val());
-            // localStorage.setItem("map_address", $('#map-address').val());
             localStorage.setItem("map_message", $("#map-message").val());
 
             //跳转到地图标注页面
-            // var url = composer_host + "map/mark/";
             window.location.href = encodeURI('/map/mark/');
         },
         saveData: function() {
             var location = $("#map-location").val();
-            // var address = $("#map-address").val();
-            var address = localStorage.getItem('map_address');
             var message = $("#map-message").val();
             var map_lng = localStorage.getItem("map_lng") || 116.331398;
             var map_lat = localStorage.getItem("map_lat") || 39.897445;
             //删除 localStorage
             localStorage.removeItem("map_location");
-            localStorage.removeItem("map_address");
+            // localStorage.removeItem("map_address");
             localStorage.removeItem("map_message");
             localStorage.removeItem("map_lng");
             localStorage.removeItem("map_lat");
@@ -82,7 +78,6 @@
                 type: "PUT",
                 data: {
                     "location":location,
-                    "address":address,
                     "message":message,
                     "map_lng":map_lng,
                     "map_lat":map_lat
@@ -91,7 +86,7 @@
                     history.back();
                 },
                 error: function (e) {
-                    alert("请填写正确的地址并使用百度地图哟！");
+                    alert("请填写地址并点击「定位地点」哟！");
                 }
             });
         },
@@ -125,7 +120,7 @@
             else {
                 //localStorage 存在，证明用户点击过「使用百度地图」按钮，那么从 localStorage 里读取数据
                 this.$("#map-location").val(localStorage.getItem("map_location"));
-                this.$("#map-address").val(localStorage.getItem("map_address"));
+                // this.$("#map-address").val(localStorage.getItem("map_address"));
                 this.$("#map-message").val(localStorage.getItem("map_message"));
             }
             if(this.$('#map-location').val()) {

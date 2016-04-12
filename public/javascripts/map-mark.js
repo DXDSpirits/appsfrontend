@@ -23,16 +23,17 @@
             this.myGeo = new BMap.Geocoder();
 
             //从 localStorage 中获取地址
-            this.address = localStorage.getItem("map_address");
+            // this.address = localStorage.getItem("map_address");
 
-            if(!this.address || this.address == 'undefined' || this.address == 'null') {
-                this.locaitonInBMap(this.address);
-                this.$('#map-address').val('');
-            }else {
-                this.$('#map-address').val(this.address);
-                this.locaitonInBMap(this.address);
-                this.enableSaveBtn();
-            }
+            // if(!this.address || this.address == 'undefined' || this.address == 'null') {
+            //     this.locaitonInBMap(this.address);
+            //     this.$('#map-address').val('');
+            // }else {
+            //     this.$('#map-address').val(this.address);
+            //     this.locaitonInBMap(this.address);
+            //     this.enableSaveBtn();
+            // }
+            this.$('#map-address').val('');
         },
         updateMap: function() {
             var addressValue = this.$('#map-address').val();
@@ -47,10 +48,10 @@
             this.myGeo.getPoint(String(currentPosition), function (somePoint) {
                 if (somePoint) {
                     self.map.centerAndZoom(somePoint, 16);
-                    localStorage.setItem('map_address', currentPosition);
+                    // localStorage.setItem('map_address', currentPosition);
                 } else {
                     self.map.centerAndZoom('北京市', 11);
-                    alert('请输入正确详细地址，点击"确定"按钮！');
+                    // alert('请输入正确详细地址，点击"确定"按钮！');
                 }
             }, "北京市");
         },
