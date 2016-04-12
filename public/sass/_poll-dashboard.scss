@@ -13,11 +13,15 @@
         background-image: bg-image-url("poll-bg.jpg");
         background-size: contain;
     }
-    #poll-title {
+    .poll-title {
         @include app-titles;
     }
     .poll-message {
-        margin: 35px 0 15px;
+        margin: 15px 0;
+    }
+    .poll-deadline {
+        margin: 45px 0 15px;;
+        color: #bebebe;
     }
     .poll-option-list {
         margin-bottom: 10px;
@@ -32,6 +36,9 @@
     .dashboard-total-num {
         color: #bebebe;
         font-size: 12px;
+    }
+    .poll-tips-text {
+        color: #8c8c8c;
     }
     .poll-option-add {
         margin: 20px 0 20px;

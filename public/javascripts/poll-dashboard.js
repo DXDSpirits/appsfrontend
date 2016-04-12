@@ -54,7 +54,8 @@
             model.fetch({
                 success: function (data) {
                     voteTotalNum = data.get('count');
-                    // self.$(".dashboard-total-deadline").children(".text-default-color").text(data.get('deadline'));
+                    self.$(".poll-deadline-text").html(model.get('deadline'));
+                    self.$('.poll-title').html(model.get('title'));
                     self.$('.poll-message').text(data.get('message'));
                     self.$(".dashboard-total-num").children(".text-default-color").text(voteTotalNum);
                     self.pollNumFetch();

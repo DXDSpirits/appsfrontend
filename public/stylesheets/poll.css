@@ -300,7 +300,7 @@ input {
   background-image: url("/public/images/poll-bg.jpg");
   background-size: contain; }
 
-#poll-dashboard-wrapper #poll-title {
+#poll-dashboard-wrapper .poll-title {
   font-size: 16px;
   width: 100%;
   padding: 20px 0px 15px;
@@ -310,7 +310,11 @@ input {
   line-height: 100%; }
 
 #poll-dashboard-wrapper .poll-message {
-  margin: 35px 0 15px; }
+  margin: 15px 0; }
+
+#poll-dashboard-wrapper .poll-deadline {
+  margin: 45px 0 15px;
+  color: #bebebe; }
 
 #poll-dashboard-wrapper .poll-option-list {
   margin-bottom: 10px; }
@@ -325,6 +329,9 @@ input {
 #poll-dashboard-wrapper .dashboard-total-num {
   color: #bebebe;
   font-size: 12px; }
+
+#poll-dashboard-wrapper .poll-tips-text {
+  color: #8c8c8c; }
 
 #poll-dashboard-wrapper .poll-option-add {
   margin: 20px 0 20px; }
@@ -369,7 +376,11 @@ input {
   margin-bottom: 15px; }
 
 #poll-vote-wrapper .poll-deadline {
+  margin: 45px 0 15px;
   color: #bebebe; }
+
+#poll-vote-wrapper .poll-tips-text {
+  color: #8c8c8c; }
 
 #poll-vote-wrapper .vote-people-num {
   color: #24dbbd;

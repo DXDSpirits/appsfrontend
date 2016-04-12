@@ -110,6 +110,7 @@
                         this.poll_vote_disable = 1;
                         self.$('input').attr('readonly', 'true');
                         self.$('btn-save').addClass('hidden');
+                        self.$(".dashboard-total-num").removeClass('hidden');
                     }else {
                         sessionStorage.setItem("poll_type", model.get('type'));
                     }
@@ -176,6 +177,7 @@
                     }
                     // 在这里确定到底是渲染选项卡还是投票结果
                     if(self.poll_vote_disable == 1){
+                        self.$(".dashboard-total-num").removeClass('hidden');
                         self.showPollResult();
                     }else{
                         if(sessionStorage.getItem("poll_type") == 1) {
