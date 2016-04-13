@@ -46,11 +46,13 @@
         saveData: function() {
             var location = $("#map-location").val();
             var message = $("#map-message").val();
+            var address = $("#map-address").val();
+
             var map_lng = localStorage.getItem("map_lng") || 116.331398;
             var map_lat = localStorage.getItem("map_lat") || 39.897445;
             //删除 localStorage
             localStorage.removeItem("map_location");
-            // localStorage.removeItem("map_address");
+            localStorage.removeItem("map_address");
             localStorage.removeItem("map_message");
             localStorage.removeItem("map_lng");
             localStorage.removeItem("map_lat");
@@ -78,6 +80,7 @@
                 type: "PUT",
                 data: {
                     "location":location,
+                    "address": address,
                     "message":message,
                     "map_lng":map_lng,
                     "map_lat":map_lat
@@ -103,11 +106,12 @@
                     url: APIRoot + "maps/map/" + self.mapID,
                     type: "GET",
                     success: function (data) {
-                        if(!data.location && !data.message){
+                        if(!data.location && !data.address){
                             //没有数据，这是新建应用，设置默认值
                             self.$("#map-location").val("地点名称，酒店、会所、海滩、草原或者其他有趣的地方");
                             // $("#map-address").val("具体的地址，XX省XX市XX区XX路XX号");
-                            self.$("#map-message").val("八仙过海，各显神通。\n\n如果很幸运你与他们在同一个城市，一清早，先走到市中心，面向朝阳，婚礼就在你的前方，一直走一直走，就到了。\n\n如果你从外地来，建议选择环保的高铁。\n\n如果你从国外来，请先回到中国，无论你在巴黎，在伦敦，在纽约，还是在斯得哥尔摩，都请先回国咯。");
+                            var message = data.message || '八仙过海，各显神通。\n\n如果很幸运你与他们在同一个城市，一清早，先走到市中心，面向朝阳，婚礼就在你的前方，一直走一直走，就到了。\n\n如果你从外地来，建议选择环保的高铁。\n\n如果你从国外来，请先回到中国，无论你在巴黎，在伦敦，在纽约，还是在斯得哥尔摩，都请先回国咯。'
+                            self.$("#map-message").val(message);
                         }else{
                             self.$("#map-location").val(data.location);
                             // $("#map-address").val(data.address);

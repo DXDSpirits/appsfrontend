@@ -41,7 +41,8 @@
             model.save({}, {
                 url: APIRoot + "rsvps/rsvp/" + this.rsvpID + "/?token=" + this.token,
                 success: function(data) {
-                    history.back();
+                    alert('保存成功');
+                    // history.back();
                 },
                 error: function(e) {
                     console.log(e);
@@ -61,14 +62,14 @@
             }))();
             model.fetch({
                 success: function (data) {
-                    if(data.message == null && data.deadline == null){
+                    if(data.get('message') == null && data.get('deadline') == null){
                         //没有数据，这是新建应用，设置默认值
                         self.$("#rsvp-message").val("在这花好月圆、良辰美景之夜，真诚邀请您来参加我们的婚礼。婚礼将于 2015 年 10 月 1 日在王府大酒店举办，恭候各位的佳音！");
                         self.$("#rsvp-deadline").val(moment().add(1, 'months').format('YYYY-MM-DD'));
                         self.$('.btn-save').attr('enable', 'true');
                     }else{
-                        self.$("#rsvp-message").val(data.message);
-                        self.$("#rsvp-deadline").val(data.deadline);
+                        self.$("#rsvp-message").val(data.get('message'));
+                        self.$("#rsvp-deadline").val(data.get('deadline'));
                         self.$('.btn-save').attr('enable', 'true');
                     }
                 }

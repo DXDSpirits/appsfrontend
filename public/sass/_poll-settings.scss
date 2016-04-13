@@ -19,6 +19,10 @@
     #poll-message {
         margin-bottom: 5px;
     }
+    #poll-deadline.form-control,
+    #poll-type.form-control {
+        padding: 0 12px;
+    }
     .poll-option-list {
         margin-bottom: 10px;
     }
