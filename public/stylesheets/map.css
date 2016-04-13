@@ -303,6 +303,9 @@ textarea {
   #map-mark-wrapper .map-body {
     padding-top: 0;
     padding-bottom: 0; }
+  #map-mark-wrapper #map-address {
+    margin-top: 20px;
+    border-top: 1px solid #e5e5e5; }
   #map-mark-wrapper .map-mark-sure {
     color: #fff;
     display: block;

@@ -46,10 +46,15 @@
         saveData: function() {
             var location = $("#map-location").val();
             var message = $("#map-message").val();
-            var address = $("#map-address").val();
+            var address = localStorage.getItem("map_address");
 
             var map_lng = localStorage.getItem("map_lng") || 116.331398;
             var map_lat = localStorage.getItem("map_lat") || 39.897445;
+
+            if(!address || !map_lat || !map_lng) {
+                alert('出错了！请重新定位试试...');
+                return;
+            }
             //删除 localStorage
             localStorage.removeItem("map_location");
             localStorage.removeItem("map_address");
