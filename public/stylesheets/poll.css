@@ -246,6 +246,10 @@ input {
 #poll-settings-wrapper #poll-message {
   margin-bottom: 5px; }
 
+#poll-settings-wrapper #poll-deadline.form-control,
+#poll-settings-wrapper #poll-type.form-control {
+  padding: 0 12px; }
+
 #poll-settings-wrapper .poll-option-list {
   margin-bottom: 10px; }
 

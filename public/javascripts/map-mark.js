@@ -32,10 +32,10 @@
                 this.$('#map-address').val('');
             }else {
                 this.$('#map-address').val(this.address);
-                this.locaitonInBMap(this.address);
+                // this.locaitonInBMap(this.address);
                 // this.enableSaveBtn();
             }
-            // this.$('#map-address').val('');
+            this.$('#map-address').val('');
         },
         updateMap: function() {
             var addressValue = this.$('#map-address').val();

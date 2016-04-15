@@ -258,7 +258,7 @@ input {
   background-color: transparent;
   padding-left: 10px; }
 
-#rsvp-settings-wrapper #poll-deadline.form-control {
+#rsvp-settings-wrapper #rsvp-deadline.form-control {
   padding: 0 12px; }
 
 #rsvp-dashboard-wrapper .btn-show-dashboard {

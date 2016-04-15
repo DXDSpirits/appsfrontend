@@ -91,7 +91,8 @@
                     "map_lat":map_lat
                 },
                 success: function (data) {
-                    history.back();
+                    alert('保存成功！');
+                    // history.back();
                 },
                 error: function (e) {
                     alert("请填写地址并点击「定位地点」哟！");
@@ -113,9 +114,9 @@
                     success: function (data) {
                         if(!data.location && !data.address){
                             //没有数据，这是新建应用，设置默认值
-                            self.$("#map-location").val("地点名称，酒店、会所、海滩、草原或者其他有趣的地方");
+                            self.$("#map-location").val('');
                             // $("#map-address").val("具体的地址，XX省XX市XX区XX路XX号");
-                            var message = data.message || '八仙过海，各显神通。\n\n如果很幸运你与他们在同一个城市，一清早，先走到市中心，面向朝阳，婚礼就在你的前方，一直走一直走，就到了。\n\n如果你从外地来，建议选择环保的高铁。\n\n如果你从国外来，请先回到中国，无论你在巴黎，在伦敦，在纽约，还是在斯得哥尔摩，都请先回国咯。'
+                            var message = data.message || ''
                             self.$("#map-message").val(message);
                         }else{
                             self.$("#map-location").val(data.location);
@@ -138,9 +139,12 @@
         },
         setImgPosition: function() {
         //填写地图图片地址
-            if (localStorage.getItem("map_lng") == null && localStorage.getItem("map_lat") == null) {
+            if (!localStorage.getItem("map_lng") && !localStorage.getItem("map_lat")) {
                 //localStorage 不存在，从 api 获取数据
                 var self = this;
+                var model = new (Backbone.Model.extend({
+                    urlRoot: APIRoot + "rsvps/rsvp/" + this.rsvpID,
+                }))();
                 $.ajax({
                     url: APIRoot + "maps/map/" +  + self.mapID,
                     type: "GET",
