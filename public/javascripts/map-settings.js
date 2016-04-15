@@ -5,7 +5,8 @@
         events: {
             'click .map-wrapper .btn-tips-map': 'useBaiduMap',
             'click .header-navbar .btn-save': 'saveData',
-            'click [data-route]': 'routeTo',
+            // 'click [data-route]': 'routeTo',
+            'click .btn-back': 'returnBack',
             'input #map-location': 'enableSaveBtn'
         },
         el: $('#map-settings-wrapper'),
@@ -34,6 +35,14 @@
             if (route == 'return') {
                 window.history.back();
             }
+        },
+        returnBack: function() {
+            localStorage.removeItem("map_location");
+            localStorage.removeItem("map_address");
+            localStorage.removeItem("map_message");
+            localStorage.removeItem("map_lng");
+            localStorage.removeItem("map_lat");
+            window.history.back();
         },
         useBaiduMap: function(){
             // 首先保存数据到 localStorage
