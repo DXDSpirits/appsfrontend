@@ -1,6 +1,6 @@
 (function() {
 
-    var APIRoot = 'http://apps.wedfairy.com/api/';
+    var APIRoot = '/api/';
 
     var RsvpDashboardView = Backbone.View.extend({
         events: {

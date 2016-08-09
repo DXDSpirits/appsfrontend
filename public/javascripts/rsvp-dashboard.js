@@ -1,5 +1,5 @@
 (function() {
-    var APIRoot = 'http://apps.wedfairy.com/api/';
+    var APIRoot = '/api/';
 
     //guests collection view
     var RsvpGuestsCollectionView = Amour.CollectionView.extend({
