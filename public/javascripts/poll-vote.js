@@ -1,6 +1,6 @@
 (function() {
     var APIRoot = '/api/';
-    var VUAPIRoot = 'http://api.bayinhe.mobi/api/users/user/';
+    var VUAPIRoot = 'http://api.wedfairy.com/api/users/user/';
 
     var pollCollection = new Amour.Collection();
 

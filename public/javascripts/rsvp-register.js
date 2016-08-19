@@ -1,7 +1,7 @@
 (function() {
 
     var APIRoot = '/api/';
-    var VUAPIRoot = 'http://api.bayinhe.mobi/api/users/user/';
+    var VUAPIRoot = 'http://api.wedfairy.com/api/users/user/';
 
     var RsvpRegisterView = Amour.View.extend({
         events: {
